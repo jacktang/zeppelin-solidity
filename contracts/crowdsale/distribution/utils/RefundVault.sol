@@ -63,4 +63,10 @@ contract RefundVault is Ownable {
     investor.transfer(depositedValue);
     Refunded(investor, depositedValue);
   }
+
+
+  function balance(address investor) internal returns(uint256) {
+    require(investor != address(0));
+    return deposited[investor];
+  }  
 }
