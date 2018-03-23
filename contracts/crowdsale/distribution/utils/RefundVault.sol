@@ -65,7 +65,7 @@ contract RefundVault is Ownable {
   }
 
 
-  function balance(address investor) internal returns(uint256) {
+  function balanceOf(address investor) public returns(uint256) {
     require(investor != address(0));
     return deposited[investor];
   }  
