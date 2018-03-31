@@ -33,8 +33,7 @@ contract TimedCrowdsale is Crowdsale {
    * @param _closingTime Crowdsale closing time
    */
   function TimedCrowdsale(uint256 _openingTime, uint256 _closingTime) public {
-    // require(_openingTime >= (now - 3600)); // clock is not always so accuracy in ethereum
-    require(_openingTime >= block.timestamp);
+    require(_openingTime >= (now - 3600)); // clock is not always so accuracy in ethereum
     require(_closingTime >= _openingTime);
 
     openingTime = _openingTime;
