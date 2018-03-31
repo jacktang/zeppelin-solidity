@@ -35,9 +35,10 @@ contract RefundVault is Ownable {
   /**
    * @param investor Investor address
    */
-  function deposit(address investor) onlyOwner public payable {
+  function deposit(address investor) onlyOwner public payable returns (bool) {
     require(state == State.Active);
     deposited[investor] = deposited[investor].add(msg.value);
+    return true;
   }
 
   function close() onlyOwner public {
