@@ -17,6 +17,7 @@ contract RefundVault is Ownable {
 
   mapping (address => uint256) public deposited;
   address [] public depositedList;
+  uint256 public depositedCount;
   address public wallet;
   State public state;
 
@@ -40,6 +41,7 @@ contract RefundVault is Ownable {
     require(state == State.Active);
     if(deposited[investor] == 0) {
       depositedList.push(investor);
+      depositedCount += 1;
     }
     deposited[investor] = deposited[investor].add(msg.value);
     return true;
