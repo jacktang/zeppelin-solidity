@@ -16,6 +16,7 @@ contract RefundVault is Ownable {
   enum State { Active, Refunding, Closed }
 
   mapping (address => uint256) public deposited;
+  address [] public depositedList;
   address public wallet;
   State public state;
 
@@ -37,6 +38,9 @@ contract RefundVault is Ownable {
    */
   function deposit(address investor) onlyOwner public payable returns (bool) {
     require(state == State.Active);
+    if(deposited[investor] == 0) {
+      depositedList.push(investor);
+    }
     deposited[investor] = deposited[investor].add(msg.value);
     return true;
   }
